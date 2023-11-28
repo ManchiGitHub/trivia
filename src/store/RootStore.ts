@@ -6,7 +6,7 @@ const RootStore = types.model("RootStore", {
     error: types.string,
     questions: types.array(Question),
     currentIndex: types.optional(types.number, 0),
-    difficultMode: types.boolean
+    randomMode: types.boolean
 })
     .views(self => {
 
@@ -47,12 +47,12 @@ const RootStore = types.model("RootStore", {
         return {
             startTrivia: flow(function* () {
                 reset();
-                yield fetchAndApplyMathQuestions(self.difficultMode);
+                yield fetchAndApplyMathQuestions(self.randomMode);
             }),
             nextQuestion: flow(function* () {
                 if ((self.questions.length - 1) == self.currentIndex) {
                     reset();
-                    yield fetchAndApplyMathQuestions(self.difficultMode);
+                    yield fetchAndApplyMathQuestions(self.randomMode);
                 } else {
                     self.currentIndex += 1;
                 }

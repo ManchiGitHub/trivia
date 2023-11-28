@@ -22,7 +22,6 @@ export const TriviaQuestionPage = observer(() => {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
     useEffect(() => {
-
         const dispose = reaction(
             () => questions.length,
             length => {
