@@ -16,7 +16,8 @@ export const TriviaQuestionPage = observer(() => {
         currentIndex,
         currentScore,
         nextQuestion,
-        startTrivia } = useRootStore();
+        startTrivia
+    } = useRootStore();
 
     const [isLoading, setIsLoading] = useState(true);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -36,13 +37,10 @@ export const TriviaQuestionPage = observer(() => {
     }, []);
 
     useEffect(() => {
-
         if (!currentQuestion || !currentQuestion.userAnswer) {
             return;
         }
-
         showFeedbackToast();
-
         const timeoutId = setTimeout(() => {
             setSelectedAnswer('');
             nextQuestion();

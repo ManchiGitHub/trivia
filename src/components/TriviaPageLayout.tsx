@@ -14,20 +14,15 @@ interface TriviaPageLayoutProps {
     handleAnswersClick: (answer: string) => void
 };
 
-export const TriviaPageLayout: React.FC<TriviaPageLayoutProps> = observer(({ isLoading, currentQuestion, currentScore, currentIndex, questions, selectedAnswer, handleAnswersClick }) => {
+export const TriviaPageLayout: React.FC<TriviaPageLayoutProps> = observer((props) => {
     return (
         <div className="flex flex-col h-screen">
-            {isLoading && <LoadingSpinner />}
-            <ScoreAndQuestionDisplay
-                currentQuestion={currentQuestion}
-                currentScore={currentScore}
-                currentIndex={currentIndex}
-                questions={questions}
-            />
+            {props.isLoading && <LoadingSpinner />}
+            <ScoreAndQuestionDisplay {...props} />
             <AnswerButtons
-                currentQuestion={currentQuestion}
-                selectedAnswer={selectedAnswer}
-                handleAnswersClick={handleAnswersClick}
+                currentQuestion={props.currentQuestion}
+                selectedAnswer={props.selectedAnswer}
+                handleAnswersClick={props.handleAnswersClick}
             />
         </div>
     );
